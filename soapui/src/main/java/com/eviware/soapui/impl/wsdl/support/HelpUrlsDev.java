@@ -64,7 +64,6 @@ public interface HelpUrlsDev {
 
     public static final String ENDPOINTSEDITOR_HELP_URL = "/soap_and_wsdl/working_with_wsdls";
 
-    public static final String FORUMS_HELP_URL = "http://community.smartbear.com/";
     public static final String FUNCTIONAL_TESTING_SETUP_SCRIPT = "/functional_testing/working_with_scripts";
     public static final String FUNCTIONAL_TESTING_TEARDOWN_SCRIPT = "/functional_testing/working_with_scripts";
 
