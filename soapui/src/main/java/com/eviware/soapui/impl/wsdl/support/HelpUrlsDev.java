@@ -27,7 +27,7 @@ public interface HelpUrlsDev {
 
     public static final String THIRD_PARTY_LICENSE_INFO = "/developers_corner/3rd";
 
-    public static final String SMARTBEAR_WEB_SITE_START_PAGE = "http://www.smartbear.com";
+    public static final String SMARTBEAR_WEB_SITE_START_PAGE = "http://www.szalapski.com";
     public static final String SMARTBEAR_PRIVACY_POLICY_URL = "/store_info/privacy_policy";
 
     public static final String ADDMOCKOPERATIONASMOCKRESPONSESTEP_HELP_URL = "/service_mocking/mocking_soap_services";
