@@ -10,7 +10,7 @@ System.exit(0)
 def currentYear = new Date().getYear()+1900
 def copyright = """<?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Copyright 2004-${currentYear} SmartBear Software
+  ~ Copyright ${currentYear} Szalapski Software.
   ~
   ~ Licensed under the EUPL, Version 1.1 or - as soon as they will be approved by the European Commission - subsequent
   ~ versions of the EUPL (the "Licence");

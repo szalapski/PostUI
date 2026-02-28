@@ -9,7 +9,7 @@ System.exit(0)
 
 def currentYear = new Date().getYear()+1900
 def copyright = """/*\r
- * SoapUI, Copyright (C) 2004-${currentYear} SmartBear Software \r
+ * PostUI, Copyright ${currentYear} Szalapski Software. \r
  *\r
  * Licensed under the EUPL, Version 1.1 or - as soon as they will be approved by the European Commission - subsequent \r
  * versions of the EUPL (the "Licence"); \r

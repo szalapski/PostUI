@@ -1,18 +1,3 @@
-/*
- * SoapUI, Copyright (C) 2004-2022 SmartBear Software
- *
- * Licensed under the EUPL, Version 1.1 or - as soon as they will be approved by the European Commission - subsequent
- * versions of the EUPL (the "Licence");
- * You may not use this work except in compliance with the Licence.
- * You may obtain a copy of the Licence at:
- *
- * http://ec.europa.eu/idabc/eupl
- *
- * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
- * distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
- * express or implied. See the Licence for the specific language governing permissions and limitations
- * under the Licence.
- */
 
 package com.eviware.soapui;
 
@@ -218,7 +203,7 @@ public class SoapUI {
     public static final String CURRENT_SOAPUI_WORKSPACE = SoapUI.class.getName() + "@workspace";
     public final static Logger log = LogManager.getLogger(SoapUI.class);
     public final static String SOAPUI_VERSION = getVersion(SoapUISystemProperties.VERSION);
-    public final static String PRODUCT_NAME = "SoapUI";
+    public final static String PRODUCT_NAME = "PostUI";
     public static final String DEFAULT_WORKSPACE_FILE = "default-soapui-workspace.xml";
     public static final String SOAPUI_SPLASH = "SoapUI-Spashscreen.png";
     public static final String SOAPUI_ABOUT = "SoapUI-blank.png";
@@ -227,8 +212,8 @@ public class SoapUI {
     private static final String PROXY_ENABLED_ICON = "/Proxy_Turned-on.png";
     private static final String PROXY_DISABLED_ICON = "/Proxy_Turned-off.png";
     public static final String BUILDINFO_PROPERTIES = "/buildinfo.properties";
-    public static final String STARTER_PAGE_HEADER = "SoapUI Start Page";
-    public static final String STARTER_PAGE_TOOL_TIP = "Info on SoapUI";
+    public static final String STARTER_PAGE_HEADER = PRODUCT_NAME + " Start Page";
+    public static final String STARTER_PAGE_TOOL_TIP = "Info on " + PRODUCT_NAME + ", including links to documentation, support and training";
     public static String FRAME_ICON = "/SoapUI-OS_16-16.png;/SoapUI-OS_24-24.png;/SoapUI-OS_32-32.png;/SoapUI-OS_48-48.png;/SoapUI-OS_256-256.png";
 
     public static String STARTER_PAGE_ERROR_URL = "file://" + System.getProperty("soapui.home", ".")
@@ -353,7 +338,7 @@ public class SoapUI {
 
         mainInspector = JInspectorPanelFactory.build(buildContentPanel(), SwingConstants.LEFT);
         mainInspector.addInspector(new JComponentInspector<JComponent>(buildMainPanel(), "Navigator",
-                "The SoapUI Navigator", true));
+                "The " + PRODUCT_NAME + " Navigator", true));
         mainInspector.setCurrentInspector("Navigator");
         frame.setJMenuBar(buildMainMenu());
         frame.getContentPane().add(buildToolbar(), BorderLayout.NORTH);
@@ -391,12 +376,6 @@ public class SoapUI {
         mainToolbar.add(new NewProjectActionDelegate("/new-rest-project-icon.png", "REST", NewRestProjectAction.SOAPUI_ACTION_ID, CREATE_REST_PROJECT_FROM_TOOLBAR));
         mainToolbar.add(new ImportWsdlProjectActionDelegate());
         mainToolbar.add(new SaveAllActionDelegate());
-        mainToolbar.addSpace(2);
-        mainToolbar.add(new ShowOnlineHelpAction("Forum", HelpUrls.COMMUNITY_HELP_URL,
-                "Opens the SoapUI Forum in a browser", "/forum.png"));
-        mainToolbar.addSpace(2);
-        mainToolbar.add(new ShowOnlineHelpAction("Trial", HelpUrls.TRIAL_URL, "Apply for ReadyAPI Trial License",
-                "/Trial_20-20.png"));
         mainToolbar.add(new PreferencesActionDelegate());
         applyProxyButton = (JToggleButton) mainToolbar.add(new JToggleButton(new ApplyProxyButtonAction()));
         updateProxyButtonAndTooltip();
@@ -435,7 +414,7 @@ public class SoapUI {
         mainToolbar.addFixed(searchLabel);
         mainToolbar.addSeparator(new Dimension(3, 3));
         mainToolbar.addFixed(searchField);
-        mainToolbar.add(new ToolbarForumSearchAction());
+        
         mainToolbar.add(new ShowOnlineHelpAction(HelpUrls.USERGUIDE_HELP_URL));
         for (int i = 0; i < mainToolbar.getComponentCount(); i++) {
             if (mainToolbar.getComponent(i) instanceof JComponent) {
@@ -575,18 +554,11 @@ public class SoapUI {
         helpMenu.addSeparator();
         helpMenu.add(new ShowOnlineHelpAction("API Testing Dojo", HelpUrls.API_TESTING_DOJO_HELP_URL));
         helpMenu.add(new ShowOnlineHelpAction("Getting Started", HelpUrls.GETTINGSTARTED_HELP_URL));
-        helpMenu.add(new SearchForumAction());
         helpMenu.addSeparator();
         helpMenu.add(new ShowSystemPropertiesAction());
-        helpMenu.addSeparator();
         helpMenu.add(new VersionUpdateAction());
-        helpMenu.addSeparator();
-        helpMenu.add(new ShowOnlineHelpAction("ReadyAPI Trial", HelpUrls.TRIAL_URL,
-                "Apply for ReadyAPI Trial License", "/Trial_16-16.png"));
         helpMenu.add(new OpenUrlAction("Privacy Policy", SMARTBEAR_WEB_SITE_START_PAGE + HelpUrls.SMARTBEAR_PRIVACY_POLICY_URL));
-        helpMenu.addSeparator();
-        helpMenu.add(new OpenUrlAction("soapui.org", "http://www.soapui.org"));
-        helpMenu.add(new OpenUrlAction("smartbear.com", SMARTBEAR_WEB_SITE_START_PAGE));
+        helpMenu.add(new OpenUrlAction("szalapski.com", SMARTBEAR_WEB_SITE_START_PAGE));
         helpMenu.addSeparator();
         helpMenu.add(new AboutAction());
         return helpMenu;
@@ -716,7 +688,7 @@ public class SoapUI {
     }
 
     private JComponent buildContentPanel() {
-        return buildLogPanel(true, "SoapUI log");
+        return buildLogPanel(true, PRODUCT_NAME + " log");
     }
 
     private JComponent buildLogPanel(boolean hasDefault, String defaultName) {
@@ -930,7 +902,7 @@ public class SoapUI {
     public static SoapUI startSoapUI(String[] args, String title, SwingSoapUICore core)
             throws Exception {
         System.setProperty("apple.laf.useScreenMenuBar", "true");
-        System.setProperty("com.apple.mrj.application.apple.menu.about.name", "SoapUI");
+        System.setProperty("com.apple.mrj.application.apple.menu.about.name", PRODUCT_NAME);
 
         frame = new JFrame(title);
 
@@ -1161,7 +1133,7 @@ public class SoapUI {
 
             Analytics.trackAction(SoapUIActions.EXIT);
         } else {
-            if (!UISupport.confirm("Exit SoapUI without saving?", "Question")) {
+            if (!UISupport.confirm("Exit " + PRODUCT_NAME + " without saving?", "Question")) {
                 saveOnExit = true;
                 return false;
             }
@@ -1297,7 +1269,7 @@ public class SoapUI {
     private class ExitAction extends AbstractAction {
         public ExitAction() {
             super("Exit");
-            putValue(Action.SHORT_DESCRIPTION, "Saves all projects and exits SoapUI");
+            putValue(Action.SHORT_DESCRIPTION, "Saves all projects and exits " + PRODUCT_NAME);
             putValue(Action.ACCELERATOR_KEY, UISupport.getKeyStroke("menu Q"));
         }
 
@@ -1370,33 +1342,6 @@ public class SoapUI {
         }
     }
 
-    private class ToolbarForumSearchAction extends AbstractAction {
-        public ToolbarForumSearchAction() {
-            putValue(Action.SHORT_DESCRIPTION, "Searches the Smartbear Community Forum");
-            putValue(Action.SMALL_ICON, UISupport.createImageIcon("/find.png"));
-        }
-
-        public void actionPerformed(ActionEvent e) {
-            doCommunitySearch(searchField.getText());
-        }
-    }
-
-    private class SearchForumAction extends AbstractAction {
-        public SearchForumAction() {
-            super("Search Forum");
-            putValue(Action.SHORT_DESCRIPTION, "Searches the Smartbear Community Forum");
-        }
-
-        public void actionPerformed(ActionEvent e) {
-            String text = UISupport.prompt("Search Text", "Search Community Forum", "");
-            if (text == null) {
-                return;
-            }
-
-            doCommunitySearch(text);
-        }
-    }
-
     public static void showStarterPage() {
         if (starterPageDesktopPanel == null || starterPageDesktopPanel.isClosed()) {
             try {
@@ -1417,13 +1362,13 @@ public class SoapUI {
     }
 
     private static class AboutAction extends AbstractAction {
-        private static final String COPYRIGHT = "2004-" + Calendar.getInstance().get(Calendar.YEAR) + " smartbear.com";
-        private static final String SOAPUI_WEBSITE = "http://www.soapui.org";
-        private static final String SMARTBEAR_WEBSITE = "http://www.smartbear.com";
+        private static final String COPYRIGHT =  Calendar.getInstance().get(Calendar.YEAR) + " szalapski.com";
+        private static final String SOAPUI_WEBSITE = "http://szalapski.com/PostUI";
+        private static final String SMARTBEAR_WEBSITE = "http://szalapski.com";
 
         public AboutAction() {
-            super("About SoapUI");
-            putValue(Action.SHORT_DESCRIPTION, "Shows information on SoapUI");
+            super("About " + PRODUCT_NAME);
+            putValue(Action.SHORT_DESCRIPTION, "Shows information on " + PRODUCT_NAME);
         }
 
         public void actionPerformed(ActionEvent e) {
@@ -1447,7 +1392,7 @@ public class SoapUI {
             String info = "<html><body style=\"margin:0;padding:0;\"><div style=\"flex: 1;background-image: url(" + splashURI
                     + "); background-repeat: no-repeat;width: 457px;height: 301px;\">"
                     + "<p style=\"margin-top: 85px;margin-left: 30px;color:black;\"><font size=\"13px\" face=\"" + fontFamily
-                    + "\">SoapUI " + SOAPUI_VERSION + "<br>"
+                    + "\">" + PRODUCT_NAME + " " + SOAPUI_VERSION + "<br>"
                     + "Copyright (C) " + COPYRIGHT + "<br>"
                     + "<a href=\"" + SOAPUI_WEBSITE + "\">" + SOAPUI_WEBSITE + "</a> | "
                     + "<a href=\"" + SMARTBEAR_WEBSITE + "\">" + SMARTBEAR_WEBSITE + "</a><br><br>"
@@ -1457,7 +1402,7 @@ public class SoapUI {
 
             JDialog dialog = new JDialog();
             dialog.setIconImages(getFrameIcons());
-            dialog.setTitle("About SoapUI");
+            dialog.setTitle("About " + PRODUCT_NAME);
             dialog.setModal(true);
             dialog.setResizable(false);
             JPanel panel = new JPanel(new BorderLayout());
@@ -1495,7 +1440,7 @@ public class SoapUI {
     private class ExitWithoutSavingAction extends AbstractAction {
         public ExitWithoutSavingAction() {
             super("Exit without saving");
-            putValue(Action.SHORT_DESCRIPTION, "Exits SoapUI without saving");
+            putValue(Action.SHORT_DESCRIPTION, "Exits " + PRODUCT_NAME + " without saving");
             putValue(Action.ACCELERATOR_KEY, UISupport.getKeyStroke("ctrl shift Q"));
         }
 
@@ -1656,14 +1601,14 @@ public class SoapUI {
 
         public ImportPreferencesAction() {
             super(ImportPreferencesAction.IMPORT_PREFERENCES_ACTION_NAME);
-            putValue(Action.SHORT_DESCRIPTION, "Imports SoapUI Settings from another settings-file");
+            putValue(Action.SHORT_DESCRIPTION, "Imports " + PRODUCT_NAME + " Settings from another settings-file");
         }
 
         public void actionPerformed(ActionEvent e) {
             try {
                 // prompt for import
                 File file = UISupport.getFileDialogs().open(null, ImportPreferencesAction.IMPORT_PREFERENCES_ACTION_NAME,
-                        ".xml", "SoapUI Settings XML (*.xml)", null);
+                        ".xml", PRODUCT_NAME + " Settings XML (*.xml)", null);
                 if (file != null) {
                     soapUICore.importSettings(file);
                     Analytics.trackAction(IMPORT_PREFERENCES);
@@ -1877,7 +1822,7 @@ public class SoapUI {
                         userPreferences.setSoapUIWindowBounds(frame.getBounds());
                         userPreferences.setSoapUIExtendedState(frame.getExtendedState());
                     } catch (BackingStoreException e) {
-                        logError(e, "Could not save SoapUI window bounds");
+                        logError(e, "Could not save " + PRODUCT_NAME + " window bounds");
                     }
                 }
             });

@@ -1,18 +1,4 @@
-/*
- * SoapUI, Copyright (C) 2004-2022 SmartBear Software
- *
- * Licensed under the EUPL, Version 1.1 or - as soon as they will be approved by the European Commission - subsequent 
- * versions of the EUPL (the "Licence"); 
- * You may not use this work except in compliance with the Licence. 
- * You may obtain a copy of the Licence at: 
- * 
- * http://ec.europa.eu/idabc/eupl 
- * 
- * Unless required by applicable law or agreed to in writing, software distributed under the Licence is 
- * distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either 
- * express or implied. See the Licence for the specific language governing permissions and limitations 
- * under the Licence. 
- */
+
 
 package com.eviware.soapui.impl.wsdl.support;
 
@@ -39,7 +25,7 @@ public interface HelpUrls {
 
     public static final String MISSING_URL = "/missing-url.html";
 
-    public static final String SMARTBEAR_WEB_SITE_START_PAGE = "http://www.smartbear.com";
+    public static final String SMARTBEAR_WEB_SITE_START_PAGE = "http://www.szalapski.com";
     public static final String SMARTBEAR_PRIVACY_POLICY_URL = "/privacy";
 
     public static final String ADDMOCKOPERATIONASMOCKRESPONSESTEP_HELP_URL = "/Service-Mocking/mocking-soap-services.html";
